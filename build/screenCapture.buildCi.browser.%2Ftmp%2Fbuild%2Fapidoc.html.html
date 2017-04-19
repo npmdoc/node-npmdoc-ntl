@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/ruyadorno/ntl#readme"
-
-    >ntl (v1.2.0)</a>
+    <a href="https://github.com/ruyadorno/ntl#readme">ntl (v1.2.0)</a>
 </h1>
 <h4>Npm Task List: Interactive cli menu to list/run npm tasks</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.ntl">module ntl</a><ol>
 
@@ -88,12 +81,12 @@
     <li>description and source-code<pre class="apidocCodePre">ntl = function (p, exec, log, cwd, tasks, options) {
 	function printHelp() {
 		log.info(
-			&#x27;\nUsage:\n  ntl [&#x3c;path&#x3e;]\n&#x27; +
-			&#x27;\nOptions:\n  -v --version   Displays app version number\n&#x27; +
-			&#x27;  -h --help      Shows this help message\n&#x27; +
-			&#x27;  -a --all       Includes pre and post scripts on the list\n&#x27; +
-			&#x27;  -m --multiple  Allows a selection of multiple tasks to run at once\n&#x27; +
-			&#x27;  -i --info      Displays the contents of each script&#x27;
+			'\nUsage:\n  ntl [&lt;path&gt;]\n' +
+			'\nOptions:\n  -v --version   Displays app version number\n' +
+			'  -h --help      Shows this help message\n' +
+			'  -a --all       Includes pre and post scripts on the list\n' +
+			'  -m --multiple  Allows a selection of multiple tasks to run at once\n' +
+			'  -i --info      Displays the contents of each script'
 		);
 	}
 
@@ -107,8 +100,8 @@
 		}
 
 		var prefixes = [
-			&#x27;pre&#x27;,
-			&#x27;post&#x27;
+			'pre',
+			'post'
 		];
 		return !prefixes.some(function (prefix) {
 			return taskName.slice(0, prefix.length) === prefix;
@@ -120,10 +113,10 @@
 		values = Array.isArray(values) ? values : [values];
 		values.forEach(function (answer) {
 			exec([
-				&#x27;npm&#x27;,
-				&#x27;run&#x27;,
+				'npm',
+				'run',
 				answer
-			].join(&#x27; &#x27;), {
+			].join(' '), {
 				cwd: cwd,
 				stdio: [
 					p.stdin,
@@ -136,11 +129,11 @@
 
 	function showList() {
 		if (!tasks || !Object.keys(tasks).length) {
-			log.info(&#x27;There are no npm scripts available here&#x27;);
+			log.info('There are no npm scripts available here');
 			return;
 		}
 
-		log.info(&#x27;Npm Task List - v&#x27; + pkg.version);
+		log.info('Npm Task List - v' + pkg.version);
 
 		var prompt = inquirer.createPromptModule({
 			input: p.stdin,
@@ -150,28 +143,28 @@
 			.filter(filterPrefixes)
 			.map(function (key) {
 				return {
-					name: key + (options.info ? &#x27;: &#x27; + tasks[key] : &#x27;&#x27;),
+					name: key + (options.info ? ': ' + tasks[key] : ''),
 					value: key
 				};
 			});
 		var promptTypes = {
 			base: {
-				type: &#x27;list&#x27;,
-				name: &#x27;task&#x27;,
-				message: &#x27;Select a task to run:&#x27;,
+				type: 'list',
+				name: 'task',
+				message: 'Select a task to run:',
 				choices: promptChoices
 			},
 			multiple: {
-				type: &#x27;checkbox&#x27;,
-				name: &#x27;task&#x27;,
-				message: &#x27;Select tasks to run:&#x27;,
+				type: 'checkbox',
+				name: 'task',
+				message: 'Select tasks to run:',
 				choices: promptChoices
 			}
 		};
 
-		p.stdin.setEncoding(&#x27;utf8&#x27;);
-		p.stdin.on(&#x27;data&#x27;, function (chunk) {
-			if (chunk === &#x27;\u001b&#x27;) { // ESC
+		p.stdin.setEncoding('utf8');
+		p.stdin.on('data', function (chunk) {
+			if (chunk === '\u001b') { // ESC
 				p.exit(0);
 			}
 		});
@@ -202,3 +195,4 @@
     ]
 </div>
 </div>
+</body></html>

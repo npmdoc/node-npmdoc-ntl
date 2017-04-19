@@ -61,12 +61,138 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.ntl">module ntl</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ntl.ntl">
+            function <span class="apidocSignatureSpan"></span>ntl
+            <span class="apidocSignatureSpan">(p, exec, log, cwd, tasks, options)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.ntl" id="apidoc.module.ntl">module ntl</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ntl.ntl" id="apidoc.element.ntl.ntl">
+        function <span class="apidocSignatureSpan"></span>ntl
+        <span class="apidocSignatureSpan">(p, exec, log, cwd, tasks, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ntl = function (p, exec, log, cwd, tasks, options) {
+	function printHelp() {
+		log.info(
+			&#x27;\nUsage:\n  ntl [&#x3c;path&#x3e;]\n&#x27; +
+			&#x27;\nOptions:\n  -v --version   Displays app version number\n&#x27; +
+			&#x27;  -h --help      Shows this help message\n&#x27; +
+			&#x27;  -a --all       Includes pre and post scripts on the list\n&#x27; +
+			&#x27;  -m --multiple  Allows a selection of multiple tasks to run at once\n&#x27; +
+			&#x27;  -i --info      Displays the contents of each script&#x27;
+		);
+	}
+
+	function printVersion() {
+		log.info(pkg.version);
+	}
+
+	function filterPrefixes(taskName) {
+		if (options.all) {
+			return true;
+		}
+
+		var prefixes = [
+			&#x27;pre&#x27;,
+			&#x27;post&#x27;
+		];
+		return !prefixes.some(function (prefix) {
+			return taskName.slice(0, prefix.length) === prefix;
+		});
+	}
+
+	function onPrompt(answer) {
+		var values = answer.task;
+		values = Array.isArray(values) ? values : [values];
+		values.forEach(function (answer) {
+			exec([
+				&#x27;npm&#x27;,
+				&#x27;run&#x27;,
+				answer
+			].join(&#x27; &#x27;), {
+				cwd: cwd,
+				stdio: [
+					p.stdin,
+					p.stdout,
+					p.stderr
+				]
+			});
+		});
+	}
+
+	function showList() {
+		if (!tasks || !Object.keys(tasks).length) {
+			log.info(&#x27;There are no npm scripts available here&#x27;);
+			return;
+		}
+
+		log.info(&#x27;Npm Task List - v&#x27; + pkg.version);
+
+		var prompt = inquirer.createPromptModule({
+			input: p.stdin,
+			output: p.stdout
+		});
+		var promptChoices = Object.keys(tasks)
+			.filter(filterPrefixes)
+			.map(function (key) {
+				return {
+					name: key + (options.info ? &#x27;: &#x27; + tasks[key] : &#x27;&#x27;),
+					value: key
+				};
+			});
+		var promptTypes = {
+			base: {
+				type: &#x27;list&#x27;,
+				name: &#x27;task&#x27;,
+				message: &#x27;Select a task to run:&#x27;,
+				choices: promptChoices
+			},
+			multiple: {
+				type: &#x27;checkbox&#x27;,
+				name: &#x27;task&#x27;,
+				message: &#x27;Select tasks to run:&#x27;,
+				choices: promptChoices
+			}
+		};
+
+		p.stdin.setEncoding(&#x27;utf8&#x27;);
+		p.stdin.on(&#x27;data&#x27;, function (chunk) {
+			if (chunk === &#x27;\u001b&#x27;) { // ESC
+				p.exit(0);
+			}
+		});
+
+		return prompt(
+			options.multiple ? promptTypes.multiple : promptTypes.base,
+			onPrompt
+		);
+	}
+
+	if (options.help) {
+		printHelp();
+	} else if (options.version) {
+		printVersion();
+	} else {
+		return showList();
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
