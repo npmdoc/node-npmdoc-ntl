@@ -1,9 +1,14 @@
-# api documentation for  [ntl (v1.2.0)](https://github.com/ruyadorno/ntl#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-ntl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ntl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ntl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ntl)
+# npmdoc-ntl
+
+#### api documentation for  [ntl (v1.2.0)](https://github.com/ruyadorno/ntl#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-ntl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ntl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ntl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ntl)
+
 #### Npm Task List: Interactive cli menu to list/run npm tasks
 
-[![NPM](https://nodei.co/npm/ntl.png?downloads=true)](https://www.npmjs.com/package/ntl)
+[![NPM](https://nodei.co/npm/ntl.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/ntl)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-ntl/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-ntl_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-ntl/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-ntl/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-ntl/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-ntl/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-ntl/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-ntl/build/screenCapture.npmPackageListing.svg)
 
@@ -74,13 +79,11 @@
     "license": "MIT",
     "maintainers": [
         {
-            "name": "ruyadorno",
-            "email": "contact@ruyadorno.com"
+            "name": "ruyadorno"
         }
     ],
     "name": "ntl",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ruyadorno/ntl.git"
@@ -97,16 +100,6 @@
     }
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module ntl](#apidoc.module.ntl)
-
-
-
-# <a name="apidoc.module.ntl"></a>[module ntl](#apidoc.module.ntl)
 
 
 
